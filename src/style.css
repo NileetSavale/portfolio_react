@@ -205,6 +205,7 @@ button:focus {
   width: 100%;
 }
 
+
 /* --------- */
 /* Home section */
 /* --------- */
@@ -293,7 +294,12 @@ button:focus {
   font-size: 2.4em !important;
   color: #b562d6 !important;
 }
-
+@media (max-width: 767px) {
+  
+  .home-header{
+    padding-top: 0px !important;
+  }
+}
 @media (max-width: 767px) {
   .Typewriter__wrapper {
     font-size: 1.4em !important;
@@ -458,7 +464,9 @@ button:focus {
   padding-right: 25px !important;
   height: auto !important;
 }
-
+.project-card-wrapper {
+  height: 100%;
+}
 .project-card-view {
   box-shadow: 0 4px 5px 3px rgba(119, 53, 136, 0.459) !important;
   color: white !important;
@@ -472,7 +480,13 @@ button:focus {
   overflow: hidden !important;
   box-shadow: 0 4px 4px 5px rgba(129, 72, 144, 0.561) !important;
 }
-
+.github-profile-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Adjust as needed */
+  position: relative; /* Ensure z-index works */
+  z-index: 1000; /* Ensure it's on top of other elements */
+}
 .blog-card {
   padding-top: 50px !important;
   padding-bottom: 50px !important;
@@ -547,6 +561,11 @@ button:focus {
   padding-bottom: 30px !important;
   background-image: var(--section-background-color) !important;
   color: white !important;
+}
+@media (max-width: 767px) {
+  .about-section {
+    padding-top: 90px !important;
+  }
 }
 
 .tech-icons {
