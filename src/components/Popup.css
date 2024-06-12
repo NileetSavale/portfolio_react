@@ -1,10 +1,5 @@
-/* --------- */
-/* Popup.css   * /
-/* --------- */
-
 /* Popup.css */
 
-/* Popup.css */
 @keyframes popupFadeIn {
   from {
     opacity: 0;
@@ -41,13 +36,12 @@
 }
 
 .popup {
-  background-color: #623686;
+  background-color: #4c2c69; /* Darker purple */
   padding: 20px;
   border-radius: 8px;
   max-width: 400px;
   width: 100%;
   position: relative; /* Position relative for z-index to work */
-  /* z-index: 1001; Ensure the pop-up is above the overlay */
   z-index: 1001; /* Ensure the pop-up is above the overlay */
   animation: popupFadeIn 0.3s ease-out;
 }
@@ -57,7 +51,8 @@
 
 .popup-header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .close-button {
@@ -106,9 +101,42 @@
 .popup-content button:hover {
   background-color: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
 }
+
 .popup-title {
   color: #fff;
   font-size: 24px;
   margin: 0;
   flex-grow: 1; /* Grow to fill available space */
+}
+
+@media (max-width: 768px) {
+  .popup {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .popup-title {
+    font-size: 20px;
+  }
+
+  .popup-content input,
+  .popup-content textarea {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  .popup-content button {
+    padding: 8px 16px;
+  }
+}
+/* Popup.css */
+
+/* ... existing styles ... */
+
+.success-message {
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
 }

@@ -1,5 +1,3 @@
-// NavBar.js
-
 import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -21,6 +19,7 @@ function NavBar() {
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
+    updateExpanded(false); // Ensure the navbar collapses when popup opens
   };
 
   function scrollHandler() {
