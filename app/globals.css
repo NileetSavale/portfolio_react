@@ -1,0 +1,270 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated to brownish café-themed color palette with rich brown backgrounds */
+  --background: oklch(0.45 0.08 35); /* Rich brown background */
+  --foreground: oklch(0.95 0.02 45); /* Warm cream text for contrast */
+  --card: oklch(0.5 0.06 30); /* Slightly lighter brown for cards */
+  --card-foreground: oklch(0.95 0.02 45);
+  --popover: oklch(0.5 0.06 30);
+  --popover-foreground: oklch(0.95 0.02 45);
+  --primary: oklch(0.75 0.12 45); /* Warm golden accent */
+  --primary-foreground: oklch(0.25 0.05 35);
+  --secondary: oklch(0.55 0.06 35); /* Medium brown */
+  --secondary-foreground: oklch(0.95 0.02 45);
+  --muted: oklch(0.4 0.06 30); /* Darker brown for muted elements */
+  --muted-foreground: oklch(0.85 0.03 40);
+  --accent: oklch(0.7 0.15 50); /* Warm orange accent */
+  --accent-foreground: oklch(0.25 0.05 35);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.95 0.02 45);
+  --border: oklch(0.6 0.06 35); /* Lighter brown for borders */
+  --input: oklch(0.55 0.06 35);
+  --ring: oklch(0.7 0.15 50);
+  --chart-1: oklch(0.75 0.12 45);
+  --chart-2: oklch(0.7 0.15 50);
+  --chart-3: oklch(0.65 0.1 40);
+  --chart-4: oklch(0.8 0.08 55);
+  --chart-5: oklch(0.6 0.12 30);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.5 0.06 30);
+  --sidebar-foreground: oklch(0.95 0.02 45);
+  --sidebar-primary: oklch(0.75 0.12 45);
+  --sidebar-primary-foreground: oklch(0.25 0.05 35);
+  --sidebar-accent: oklch(0.55 0.06 35);
+  --sidebar-accent-foreground: oklch(0.95 0.02 45);
+  --sidebar-border: oklch(0.6 0.06 35);
+  --sidebar-ring: oklch(0.7 0.15 50);
+}
+
+.dark {
+  /* Adjusted dark mode to work with the new brown theme */
+  --background: oklch(0.2 0.04 25); /* Very dark brown background */
+  --foreground: oklch(0.92 0.02 45); /* Warm cream text */
+  --card: oklch(0.25 0.05 30);
+  --card-foreground: oklch(0.92 0.02 45);
+  --popover: oklch(0.25 0.05 30);
+  --popover-foreground: oklch(0.92 0.02 45);
+  --primary: oklch(0.8 0.12 50); /* Brighter golden primary for dark mode */
+  --primary-foreground: oklch(0.2 0.04 25);
+  --secondary: oklch(0.3 0.05 30);
+  --secondary-foreground: oklch(0.92 0.02 45);
+  --muted: oklch(0.28 0.04 30);
+  --muted-foreground: oklch(0.7 0.04 40);
+  --accent: oklch(0.75 0.15 50);
+  --accent-foreground: oklch(0.2 0.04 25);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.35 0.05 30);
+  --input: oklch(0.28 0.04 30);
+  --ring: oklch(0.75 0.15 50);
+  --chart-1: oklch(0.8 0.12 50);
+  --chart-2: oklch(0.75 0.15 50);
+  --chart-3: oklch(0.7 0.1 40);
+  --chart-4: oklch(0.65 0.12 35);
+  --chart-5: oklch(0.6 0.08 30);
+  --sidebar: oklch(0.25 0.05 30);
+  --sidebar-foreground: oklch(0.92 0.02 45);
+  --sidebar-primary: oklch(0.8 0.12 50);
+  --sidebar-primary-foreground: oklch(0.2 0.04 25);
+  --sidebar-accent: oklch(0.3 0.05 30);
+  --sidebar-accent-foreground: oklch(0.92 0.02 45);
+  --sidebar-border: oklch(0.35 0.05 30);
+  --sidebar-ring: oklch(0.75 0.15 50);
+}
+
+@theme inline {
+  /* Updated font variables for new font combination */
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-merriweather);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Custom café-themed animations and effects */
+  @keyframes steam {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(180deg);
+    }
+  }
+
+  @keyframes gentle-bounce {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  /* Added new animations for SVG coffee elements */
+  @keyframes slow-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Enhanced steam animation for SVG elements */
+  @keyframes steam-rise {
+    0% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-15px) translateX(3px) scale(1.1);
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(-30px) translateX(-2px) scale(0.8);
+      opacity: 0;
+    }
+  }
+
+  /* Floating animation with more natural movement */
+  @keyframes float-natural {
+    0%,
+    100% {
+      transform: translateY(0px) translateX(0px) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-8px) translateX(2px) rotate(90deg);
+    }
+    50% {
+      transform: translateY(-12px) translateX(-1px) rotate(180deg);
+    }
+    75% {
+      transform: translateY(-6px) translateX(-3px) rotate(270deg);
+    }
+  }
+
+  .steam-animation {
+    animation: steam 3s ease-in-out infinite;
+  }
+
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .gentle-bounce {
+    animation: gentle-bounce 2s ease-in-out infinite;
+  }
+
+  /* Added utility classes for new animations */
+  .animate-steam {
+    animation: steam-rise 4s ease-out infinite;
+  }
+
+  .animate-float {
+    animation: float-natural 6s ease-in-out infinite;
+  }
+
+  .animate-gentle-bounce {
+    animation: gentle-bounce 3s ease-in-out infinite;
+  }
+
+  .animate-slow-spin {
+    animation: slow-spin 12s linear infinite;
+  }
+
+  /* Café-style text effects */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+@keyframes float-slow {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float-slow {
+  animation: float-slow linear infinite;
+}
+
+@keyframes cup-float {
+  0%,100% { transform: translate(-50%, 0px); }
+  50% { transform: translate(-50%, -12px); }
+}
+
+.animate-cup-float {
+  animation: cup-float 5s ease-in-out infinite;
+}
+
+@keyframes steam-rise {
+  0% { opacity: 0; transform: translate(-50%, 10px) scale(0.8); }
+  40% { opacity: 0.6; }
+  100% { opacity: 0; transform: translate(-50%, -40px) scale(1.2); }
+}
+
+.animate-steam {
+  animation: steam-rise 3s ease-out infinite;
+}
