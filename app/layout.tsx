@@ -24,10 +24,10 @@ export const metadata: Metadata = {
   description: "Computer Science Graduate Student | AI/ML Developer | Full-Stack Engineer",
 icons: {
   icon: [
-    { url: "/favicon.svg", rel: "icon", type: "image/svg+xml" },
+    { url: "/logo3.svg", rel: "icon", type: "image/svg+xml" },
   ],
-  shortcut: "/favicon.svg",
-  apple: "/favicon.svg",
+  shortcut: "/logo3.svg",
+  apple: "/logo3.svg",
 },
 }
 
