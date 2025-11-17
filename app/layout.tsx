@@ -22,10 +22,13 @@ const merriweather = Merriweather({
 export const metadata: Metadata = {
   title: "Nileet Savale - Portfolio",
   description: "Computer Science Graduate Student | AI/ML Developer | Full-Stack Engineer",
-   icons: {
-    icon: '/logo1.svg', // or '/your-logo.png'
-    apple: '/apple-icon.png',
-  } 
+icons: {
+  icon: [
+    { url: "/favicon.svg", rel: "icon", type: "image/svg+xml" },
+  ],
+  shortcut: "/favicon.svg",
+  apple: "/favicon.svg",
+},
 }
 
 export default function RootLayout({
