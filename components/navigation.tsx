@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 const MenuIcon = () => (
   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -41,9 +42,8 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
-          {/* Logo + Name */}
-          <div className="flex items-center space-x-2 cursor-pointer">
-            {/* Dynamically swap logos */}
+          {/* CLICKABLE LOGO → Reload site */}
+          <Link href="/" className="flex items-center space-x-2 cursor-pointer">
             <img
               src={scrolled ? "/logo5.svg" : "/logo3.svg"}
               alt="logo"
@@ -57,7 +57,7 @@ export function Navigation() {
             >
               Nileet Savale
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
