@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
   const resource = resourceParam(req)
   if (!resource) return NextResponse.json({ error: 'Unknown resource' }, { status: 400 })
 
-  return NextResponse.json(readData(resource))
+  return NextResponse.json(await readData(resource))
 }
 
 export async function PUT(req: NextRequest) {
@@ -52,7 +52,7 @@ export async function PUT(req: NextRequest) {
   }
 
   try {
-    writeData(resource, body)
+    await writeData(resource, body)
   } catch {
     return NextResponse.json({ error: 'Save failed' }, { status: 500 })
   }

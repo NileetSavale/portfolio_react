@@ -8,18 +8,21 @@ import Projects    from '@/components/sections/Projects'
 import Experience  from '@/components/sections/Experience'
 import Contact     from '@/components/sections/Contact'
 import Footer      from '@/components/sections/Footer'
-export default function Home() {
-  const personal   = readData('personal')   as Record<string, unknown>
-  const content    = readData('content')    as Record<string, unknown>
-  const aboutData  = readData('about')      as { tags: string[]; stats: [string,string][] }
-  const socials    = readData('socials')    as Record<string, unknown>[]
-  const skills     = readData('skills')     as Record<string, unknown>[]
-  const projects   = readData('projects')   as Record<string, unknown>[]
-  const experience = readData('experience') as Record<string, unknown>[]
+
+export default async function Home() {
+  const [personal, content, aboutData, socials, skills, projects, experience] = await Promise.all([
+    readData<Record<string, unknown>>('personal'),
+    readData<Record<string, unknown>>('content'),
+    readData<{ tags: string[]; stats: [string,string][] }>('about'),
+    readData<Record<string, unknown>[]>('socials'),
+    readData<Record<string, unknown>[]>('skills'),
+    readData<Record<string, unknown>[]>('projects'),
+    readData<Record<string, unknown>[]>('experience'),
+  ])
 
   return (
     <main>
-<Hero personal={personal} content={content} />
+      <Hero personal={personal} content={content} />
       <div style={{ position: 'relative', zIndex: 20, backgroundColor: '#060809' }}>
         <About
           content={content}
