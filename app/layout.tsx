@@ -11,6 +11,7 @@ const mono     = Space_Mono({    weight: ['400','700'],   subsets: ['latin'],   
 export const metadata: Metadata = {
   title: 'Nileet Savale — Portfolio',
   description: 'CS Graduate Student · AI/ML Engineer · Indiana University',
+  icons: { icon: '/logo1.svg' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
