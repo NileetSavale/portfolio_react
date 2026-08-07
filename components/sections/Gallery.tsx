@@ -123,7 +123,7 @@ export default function Gallery({ items }: { items: unknown[] }) {
 
       {/* Desktop rail */}
       <div className="relative hidden md:block">
-        <div className="w-full px-12 flex items-center gap-4">
+        <div className="w-full px-24 flex items-center gap-4">
 
           <button
             onClick={() => goTo(idxRef.current - 1)}
