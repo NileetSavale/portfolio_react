@@ -1,0 +1,41 @@
+[
+  {
+    "num": "01",
+    "badge": "In Development",
+    "badgeCls": "bg-flame/10 text-flame border border-flame/30",
+    "title": "Stamp'd",
+    "desc": "Co-founded and architecting a travel-readiness platform on AWS (EC2, S3, RDS, DynamoDB, Cognito). FastAPI backend with Terraform IaC and GitHub Actions CI/CD delivers sub-200ms latency on automated compliance checks for 40+ country entry requirements — cutting manual lookup time by 70%.",
+    "tech": ["FastAPI", "AWS", "Terraform", "PostgreSQL", "GitHub Actions"],
+    "links": [{ "label": "GitHub →", "href": "https://github.com/NileetSavale" }]
+  },
+  {
+    "num": "02",
+    "badge": "Completed",
+    "badgeCls": "bg-gold/8 text-gold border border-gold/30",
+    "title": "Suits",
+    "desc": "RAG pipeline over SEC EDGAR 10-K/10-Q filings combining BM25 and sentence-transformer embeddings with reciprocal rank fusion. Achieves 91.3% retrieval accuracy on financial QA benchmarks. FastAPI backend, React frontend.",
+    "tech": ["RAG", "FastAPI", "React", "BM25", "Sentence Transformers"],
+    "links": [{ "label": "GitHub →", "href": "https://github.com/NileetSavale" }]
+  },
+  {
+    "num": "03",
+    "badge": "Completed",
+    "badgeCls": "bg-gold/8 text-gold border border-gold/30",
+    "title": "LangViz",
+    "desc": "Docker-containerized visualization platform supporting multi-language execution (Python & R). PostgreSQL backend for persistent session state, live chart rendering, and 50+ built-in chart templates — built for reproducible research workflows.",
+    "tech": ["Docker", "PostgreSQL", "Python", "R"],
+    "links": [{ "label": "GitHub →", "href": "https://github.com/NileetSavale" }]
+  },
+  {
+    "num": "04",
+    "badge": "Published",
+    "badgeCls": "bg-crimson/10 text-[#ff6b6b] border border-crimson/30",
+    "title": "IoT Smart Dustbin",
+    "desc": "IoT-powered waste management system with cloud analytics, reducing bin overflow by 60%. Published IEEE paper (Oct 2024) demonstrating real-world impact of embedded AI in urban infrastructure.",
+    "tech": ["IoT", "Cloud Analytics", "Python", "Embedded"],
+    "links": [
+      { "label": "GitHub →", "href": "https://github.com/NileetSavale" },
+      { "label": "Paper →",  "href": "#" }
+    ]
+  }
+]

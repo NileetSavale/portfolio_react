@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "eyebrow": "Co-Founder & CTO  ·  Stamp'd",
+    "subtitle": "AI / ML  ·  Full-Stack  ·  Cloud & DevOps  ·  Distributed Systems"
+  },
+  "about": {
+    "heading": "The Developer",
+    "bio": [
+      "I'm <b>Nileet Savale</b> — Co-Founder &amp; CTO at <b>Stamp'd</b>, and a freshly minted M.S. Computer Science grad from <b>Indiana University</b> (GPA 3.84&thinsp;/&thinsp;4.0). I build cloud-native backends, distributed systems, and AI/ML applications that ship to production.",
+      "My work spans healthcare data pipelines at IU's Tobias Center, scalable travel-readiness APIs at Stamp'd, and ML research at IU's School of Public Health — all under real reliability, latency, and scalability constraints.",
+      "Anime's core theme resonates: <b>relentless growth</b>. Every project is a new arc. Every constraint, a technique to master."
+    ]
+  },
+  "contact": {
+    "heading": "Get in Touch",
+    "intro": "Open to collaborations, engineering conversations, and interesting problems. Whether it's AI, distributed systems, or something entirely new — I'm listening."
+  }
+}

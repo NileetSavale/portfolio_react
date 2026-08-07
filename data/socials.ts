@@ -1,0 +1,8 @@
+export type Social = { num: string; label: string; href: string; ext: boolean }
+
+export const SOCIALS: Social[] = [
+  { num: '01', label: 'GitHub — NileetSavale',   href: 'https://github.com/NileetSavale',       ext: true  },
+  { num: '02', label: 'LinkedIn — nileet-savale', href: 'https://linkedin.com/in/nileet-savale', ext: true  },
+  { num: '03', label: 'savalenileet@gmail.com',   href: 'mailto:savalenileet@gmail.com',         ext: false },
+  { num: '04', label: 'nsavale@iu.edu',           href: 'mailto:nsavale@iu.edu',                 ext: false },
+]

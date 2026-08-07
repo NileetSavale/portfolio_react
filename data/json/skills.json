@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Languages",
+    "grad": "from-flame to-gold",
+    "skills": [
+      { "name": "Python",                  "level": "Expert",       "pct": 92 },
+      { "name": "JavaScript / TypeScript", "level": "Advanced",     "pct": 80 },
+      { "name": "Java",                    "level": "Advanced",     "pct": 75 },
+      { "name": "C++",                     "level": "Intermediate", "pct": 65 },
+      { "name": "Solidity",                "level": "Intermediate", "pct": 52 }
+    ]
+  },
+  {
+    "title": "Frameworks & ML",
+    "grad": "from-crimson to-[#ff6b6b]",
+    "skills": [
+      { "name": "NumPy / Pandas / Scikit-learn", "level": "Expert",       "pct": 90 },
+      { "name": "TensorFlow / PyTorch",          "level": "Advanced",     "pct": 83 },
+      { "name": "React / React Native",          "level": "Advanced",     "pct": 78 },
+      { "name": "Node.js",                       "level": "Advanced",     "pct": 74 },
+      { "name": "OpenCV / NLTK",                 "level": "Intermediate", "pct": 68 }
+    ]
+  },
+  {
+    "title": "Tools & Concepts",
+    "grad": "from-vivid to-volt",
+    "skills": [
+      { "name": "Git / GitHub",    "level": "Expert",  "pct": 90 },
+      { "name": "Computer Vision", "level": "Advanced", "pct": 81 },
+      { "name": "NLP",             "level": "Advanced", "pct": 78 },
+      { "name": "Docker / Linux",  "level": "Advanced", "pct": 77 },
+      { "name": "SQL / MongoDB",   "level": "Advanced", "pct": 74 }
+    ]
+  }
+]

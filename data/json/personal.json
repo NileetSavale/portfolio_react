@@ -1,0 +1,25 @@
+{
+  "name": "Nileet Savale",
+  "nameKatakana": "ニリート・サヴァレ",
+  "title": "Co-Founder & CTO",
+  "school": "Indiana University (M.S. CS, 2026)",
+  "roles": [
+    "Co-Founder & CTO",
+    "AI / ML",
+    "Full-Stack",
+    "Cloud & DevOps"
+  ],
+  "animePhoto": "/anime-photo.jpg",
+  "realPhoto": "/real-photo.jpg",
+  "resumeUrl": "/Nileet-Savale-Resume.pdf",
+  "email": "savalenileet@gmail.com",
+  "github": "https://github.com/NileetSavale",
+  "linkedin": "https://linkedin.com/in/nileet",
+  "navLinks": [
+    { "href": "#about",      "label": "About"    },
+    { "href": "#skills",     "label": "Skills"   },
+    { "href": "#projects",   "label": "Projects" },
+    { "href": "#experience", "label": "Journey"  },
+    { "href": "#contact",    "label": "Contact"  }
+  ]
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "date": "2025 — Present", "dateCls": "text-gold", "dotCls": "border-gold",
+    "role": "Co-Founder & CTO",
+    "org":  "Stamp'd — Travel Readiness Platform",
+    "desc": "Architecting a scalable travel-readiness platform on AWS (EC2, S3, RDS, DynamoDB, Cognito) with FastAPI, Terraform IaC, and GitHub Actions CI/CD. Achieved sub-200ms API latency for real-time visa and entry-requirement workflows. Zero-downtime deployments from day one."
+  },
+  {
+    "date": "Jan 2026 — Present", "dateCls": "text-[#9fe8ff]", "dotCls": "border-volt",
+    "role": "Research Assistant — Data Analytics & ML",
+    "org":  "IU School of Public Health · Bloomington, IN",
+    "desc": "Cut data preprocessing time by 60% building SQL pipelines over 180K+ NHANES records across 9 survey cycles. Developing regression and classification models linking nutritional biomarkers to cardiovascular outcomes at population scale."
+  },
+  {
+    "date": "Aug 2025 — Present", "dateCls": "text-[#c06aff]", "dotCls": "border-vivid",
+    "role": "Forward Deployment Engineer",
+    "org":  "Global Health Impact (GHI) · Tobias Center, IU",
+    "desc": "Slashed deployment time by 75% building Jenkins/Docker/Nginx CI/CD pipelines. Migrated legacy Flask services to Next.js. Engineered RESTful APIs and ingestion pipelines for healthcare analytics, reducing entity-matching errors by 30%."
+  },
+  {
+    "date": "Aug 2024 — Jul 2026", "dateCls": "text-gold", "dotCls": "border-gold",
+    "role": "M.S. Computer Science",
+    "org":  "Indiana University · Bloomington, IN · GPA 3.84 / 4.0",
+    "desc": "Graduate coursework and research in AI/ML, distributed systems, and cloud-native software engineering. Built production systems across healthcare, research, and startup environments throughout the program."
+  },
+  {
+    "date": "Nov 2023 — Apr 2024", "dateCls": "text-flame", "dotCls": "border-flame",
+    "role": "Software Engineering Intern",
+    "org":  "Wipro PARI Ltd · Pune, India",
+    "desc": "Improved industrial automation validation efficiency by 15% through FAT3 testing across 3 large-scale projects. Increased system validation accuracy by 20% with standardized testing workflows and deployment readiness checks."
+  },
+  {
+    "date": "Mar 2023 — Jun 2023", "dateCls": "text-flame", "dotCls": "border-flame",
+    "role": "Software Engineering Intern",
+    "org":  "SearchIn · Maharashtra, India",
+    "desc": "Developed 3 production applications with React, Node.js, and SQL. Improved performance by 30% through API and query optimization. Reduced production defects by 40% through structured testing and release validation."
+  },
+  {
+    "date": "Jan 2022 — Apr 2022", "dateCls": "text-flame", "dotCls": "border-flame",
+    "role": "Software Engineering Intern",
+    "org":  "Atul Ltd · Gujarat, India",
+    "desc": "Built an enterprise admin platform spanning 75+ facilities and 5,000+ employees. Engineered backend services and real-time data sync pipelines, reducing information retrieval latency by 40%."
+  },
+  {
+    "date": "Jul 2020 — Jul 2024", "dateCls": "text-gold", "dotCls": "border-gold",
+    "role": "B.E. Computer Science",
+    "org":  "Savitribai Phule Pune University · CGPA 8.9 / 10",
+    "desc": "Graduated with distinction. Strong foundation in algorithms, systems programming, and applied AI. Published IoT research on smart waste management (IEEE, Oct 2024) and earned AWS Certified AI Practitioner (AIF-C01)."
+  }
+]

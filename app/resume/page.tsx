@@ -1,0 +1,37 @@
+import Link from 'next/link'
+
+export const metadata = { title: 'Resume — Nileet Savale' }
+
+const PDF = '/Nileet-Savale-Resume.pdf'
+
+export default function ResumePage() {
+  return (
+    <main className="min-h-screen bg-ink flex flex-col">
+      <div className="flex items-center justify-between px-8 py-4 border-b border-white/10">
+        <Link
+          href="/#experience"
+          className="text-[9px] tracking-[.28em] uppercase text-paper/55 hover:text-paper transition-colors no-underline"
+        >
+          ← Back
+        </Link>
+        <span className="font-mono text-[10px] tracking-widest text-gold/60 uppercase">
+          Nileet Savale · Resume
+        </span>
+        <a
+          href={PDF}
+          download
+          className="px-4 py-[7px] border border-gold/40 text-[9px] tracking-[.28em] uppercase text-gold no-underline hover:bg-gold hover:text-ink transition-all duration-200"
+        >
+          Download PDF
+        </a>
+      </div>
+      <div className="flex-1 px-4 py-4">
+        <embed
+          src={PDF}
+          type="application/pdf"
+          className="w-full h-full min-h-[85vh] rounded"
+        />
+      </div>
+    </main>
+  )
+}

@@ -1,0 +1,9 @@
+{
+  "tags": ["Python", "FastAPI", "React", "Next.js", "AWS", "Docker", "Terraform", "PyTorch", "PostgreSQL", "TypeScript"],
+  "stats": [
+    ["3.84", "IU GPA / 4.0"],
+    ["8.9",  "Undergrad GPA / 10"],
+    ["10+",  "Technologies"],
+    ["3+",   "Published Projects"]
+  ]
+}

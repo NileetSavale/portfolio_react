@@ -6,9 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "resume": "tectonic -X compile resume/Nileet-Savale-Resume.tex --outdir public",
+    "resume:pdflatex": "pdflatex -output-directory=public resume/Nileet-Savale-Resume.tex"
   },
   "dependencies": {
+    "gsap": "^3.15.0",
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4"

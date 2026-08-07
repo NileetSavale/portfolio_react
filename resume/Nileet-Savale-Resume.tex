@@ -1,0 +1,136 @@
+%-----------------------------------
+% Nileet Savale — Resume
+% Engine: XeTeX (tectonic)   Compile: npm run resume
+%-----------------------------------
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[left=0.55in, right=0.55in, top=0.45in, bottom=0.45in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% Section heading
+\titleformat{\section}{\scshape\normalsize\bfseries\raggedright}{}{0em}{}[\vspace{1pt}\hrule\vspace{1pt}]
+\titlespacing{\section}{0pt}{6pt}{3pt}
+
+% Experience / Education entry: role+date row, org+location row
+\newcommand{\expentry}[4]{%
+  \vspace{1pt}\noindent
+  \textbf{#1}\hfill{\small #2}\\[-3pt]
+  \textit{\small #3}\hfill{\textit{\small #4}}%
+  \vspace{-4pt}
+}
+
+% Project entry: title — tech (inline)
+\newcommand{\projentry}[2]{%
+  \vspace{1pt}\noindent
+  \textbf{#1} \textemdash\ \textit{\small #2}%
+  \vspace{-2pt}
+}
+
+\newenvironment{bullets}{%
+  \begin{itemize}[leftmargin=1.3em, itemsep=0pt, topsep=3pt, parsep=0pt, partopsep=0pt]\small
+}{%
+  \end{itemize}\vspace{1pt}
+}
+
+\begin{document}
+
+%----------- HEADER -----------
+\begin{center}
+  {\LARGE\bfseries Nileet Savale}\\[3pt]
+  \small
+  \href{mailto:savalenileet@gmail.com}{savalenileet@gmail.com}
+  \ \textbar\
+  \href{https://github.com/NileetSavale}{github.com/NileetSavale}
+  \ \textbar\
+  \href{https://linkedin.com/in/nileet}{linkedin.com/in/nileet}
+\end{center}
+
+%----------- EDUCATION -----------
+\section{Education}
+
+\expentry{Indiana University}{Bloomington, IN}%
+  {M.S.\ Computer Science \textbf{· GPA 3.84 / 4.0}}{Aug 2024 -- Jul 2026}
+
+\vspace{3pt}
+\expentry{Savitribai Phule Pune University}{Pune, India}%
+  {B.E.\ Computer Science \textbf{· CGPA 8.9 / 10}}{Jul 2020 -- Jul 2024}
+
+%----------- EXPERIENCE -----------
+\section{Experience}
+
+\expentry{Co-Founder \& CTO}{2025 -- Present}{Stamp'd \textemdash\ Travel Readiness Platform}{}
+\begin{bullets}
+  \item Architecting scalable travel-readiness platform on AWS (EC2, S3, RDS, DynamoDB, Cognito) with FastAPI, Terraform IaC, and GitHub Actions CI/CD
+  \item Achieved sub-200ms API latency on compliance checks for 40+ country entry requirements, reducing manual lookup time by 70\%
+  \item Zero-downtime blue/green deployments from day one
+\end{bullets}
+
+\expentry{Research Assistant \textemdash\ Data Analytics \& ML}{Jan 2026 -- Present}%
+  {IU School of Public Health}{Bloomington, IN}
+\begin{bullets}
+  \item Cut data preprocessing time by 60\% building SQL pipelines over 180K+ NHANES records across 9 survey cycles
+  \item Developing regression and classification models linking nutritional biomarkers to cardiovascular outcomes at population scale
+\end{bullets}
+
+\expentry{Forward Deployment Engineer}{Aug 2025 -- Present}%
+  {Global Health Impact (GHI) · Tobias Center, IU}{Bloomington, IN}
+\begin{bullets}
+  \item Slashed deployment time by 75\% building Jenkins/Docker/Nginx CI/CD pipelines; migrated legacy Flask services to Next.js
+  \item Engineered RESTful APIs and ingestion pipelines for healthcare analytics, reducing entity-matching errors by 30\%
+\end{bullets}
+
+\expentry{Software Engineering Intern}{Nov 2023 -- Apr 2024}{Wipro PARI Ltd}{Pune, India}
+\begin{bullets}
+  \item Improved industrial automation validation efficiency by 15\% through FAT3 testing across 3 large-scale projects
+  \item Increased system validation accuracy by 20\% with standardized testing workflows and deployment readiness checks
+\end{bullets}
+
+\expentry{Software Engineering Intern}{Mar 2023 -- Jun 2023}{SearchIn}{Maharashtra, India}
+\begin{bullets}
+  \item Developed 3 production applications with React, Node.js, and SQL; improved API performance by 30\% through query optimization
+  \item Reduced production defects by 40\% through structured testing and release validation
+\end{bullets}
+
+\expentry{Software Engineering Intern}{Jan 2022 -- Apr 2022}{Atul Ltd}{Gujarat, India}
+\begin{bullets}
+  \item Built enterprise admin platform spanning 75+ facilities and 5,000+ employees; reduced information retrieval latency by 40\%
+\end{bullets}
+
+%----------- PROJECTS -----------
+\section{Projects}
+
+\projentry{Suits \textemdash\ Financial Document QA}{RAG, FastAPI, React, BM25, Sentence Transformers}
+\begin{bullets}
+  \item RAG pipeline over SEC EDGAR 10-K/10-Q filings combining BM25 and sentence-transformer embeddings with reciprocal rank fusion; achieves 91.3\% retrieval accuracy on financial QA benchmarks
+\end{bullets}
+
+\projentry{LangViz \textemdash\ Multi-Language Visualization Platform}{Docker, PostgreSQL, Python, R}
+\begin{bullets}
+  \item Docker-containerized platform for multi-language execution (Python \& R) with PostgreSQL session state, live chart rendering, and 50+ built-in templates
+\end{bullets}
+
+\projentry{IoT Smart Waste Management}{IoT, Cloud Analytics, Python, Embedded}
+\begin{bullets}
+  \item Reduced bin overflow by 60\%; published IEEE October 2024
+\end{bullets}
+
+%----------- SKILLS -----------
+\section{Technical Skills}
+
+\small\noindent
+\textbf{Languages:} Python, TypeScript, JavaScript, SQL, R, Java\\[2pt]
+\textbf{Frameworks:} FastAPI, React, Next.js, PyTorch, LangChain, Flask\\[2pt]
+\textbf{Cloud \& DevOps:} AWS (EC2, S3, RDS, DynamoDB, Cognito, Lambda), Terraform, Docker, GitHub Actions, Jenkins, Nginx\\[2pt]
+\textbf{Databases:} PostgreSQL, DynamoDB, MySQL
+
+%----------- CERTIFICATION -----------
+\section{Certification}
+\small AWS Certified AI Practitioner (AIF-C01)
+
+\end{document}
