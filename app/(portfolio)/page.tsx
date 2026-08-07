@@ -6,11 +6,12 @@ import About       from '@/components/sections/About'
 import Skills      from '@/components/sections/Skills'
 import Projects    from '@/components/sections/Projects'
 import Experience  from '@/components/sections/Experience'
+import Gallery     from '@/components/sections/Gallery'
 import Contact     from '@/components/sections/Contact'
 import Footer      from '@/components/sections/Footer'
 
 export default async function Home() {
-  const [personal, content, aboutData, socials, skills, projects, experience] = await Promise.all([
+  const [personal, content, aboutData, socials, skills, projects, experience, gallery] = await Promise.all([
     readData<Record<string, unknown>>('personal'),
     readData<Record<string, unknown>>('content'),
     readData<{ tags: string[]; stats: [string,string][] }>('about'),
@@ -18,6 +19,7 @@ export default async function Home() {
     readData<Record<string, unknown>[]>('skills'),
     readData<Record<string, unknown>[]>('projects'),
     readData<Record<string, unknown>[]>('experience'),
+    readData<Record<string, unknown>[]>('gallery'),
   ])
 
   return (
@@ -33,6 +35,7 @@ export default async function Home() {
         <Skills cats={skills} />
         <Projects projects={projects} />
         <Experience timeline={experience} />
+        <Gallery items={gallery} />
         <Contact socials={socials} content={content} personal={personal} />
         <Footer personal={personal} />
       </div>

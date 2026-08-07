@@ -30,6 +30,7 @@ export default function AnimeReveal({ animeImg, realImg, alt = '' }: Props) {
     type Spark = { x:number; y:number; vx:number; vy:number; r:number; life:number; col:string }
     const sparks: Spark[] = []
     let raf = 0
+    let leaveTimer = 0
 
     const resize = () => {
       sw = el.clientWidth; sh = el.clientHeight
@@ -51,7 +52,7 @@ export default function AnimeReveal({ animeImg, realImg, alt = '' }: Props) {
     }
 
     const loop = () => {
-      sx += (sTarget - sx) * 0.18
+      sx += (sTarget - sx) * 0.10
       applyClip()
       if (sparks.length) {
         ctx.clearRect(0, 0, sw, sh)
@@ -98,8 +99,17 @@ export default function AnimeReveal({ animeImg, realImg, alt = '' }: Props) {
 
     const onMove  = (e: MouseEvent)     => setPointer(e.clientX, e.clientY)
     const onTouch = (e: TouchEvent)     => setPointer(e.touches[0].clientX, e.touches[0].clientY)
-    const onLeave = ()                  => { sTarget = 1; hint.style.opacity = '1' }
-    const onEnter = ()                  => { flash.style.opacity = '0.12'; setTimeout(() => { flash.style.opacity = '0' }, 110) }
+    const onLeave = () => {
+      leaveTimer = window.setTimeout(() => {
+        sTarget = 1
+        hint.style.opacity = '1'
+      }, 500)
+    }
+    const onEnter = () => {
+      clearTimeout(leaveTimer)
+      flash.style.opacity = '0.12'
+      setTimeout(() => { flash.style.opacity = '0' }, 110)
+    }
 
     el.addEventListener('mousemove',  onMove)
     el.addEventListener('touchmove',  onTouch, { passive: true })
@@ -107,6 +117,7 @@ export default function AnimeReveal({ animeImg, realImg, alt = '' }: Props) {
     el.addEventListener('mouseenter', onEnter)
     return () => {
       cancelAnimationFrame(raf)
+      clearTimeout(leaveTimer)
       window.removeEventListener('resize', resize)
       el.removeEventListener('mousemove',  onMove)
       el.removeEventListener('touchmove',  onTouch)

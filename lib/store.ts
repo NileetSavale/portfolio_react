@@ -1,6 +1,6 @@
 import { supabase } from './supabase'
 
-export const RESOURCES = ['personal', 'content', 'socials', 'about', 'skills', 'projects', 'experience'] as const
+export const RESOURCES = ['personal', 'content', 'socials', 'about', 'skills', 'projects', 'experience', 'gallery'] as const
 export type Resource = typeof RESOURCES[number]
 
 export async function readData<T = unknown>(resource: Resource): Promise<T> {
