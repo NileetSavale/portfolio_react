@@ -11,13 +11,13 @@ export type GalleryItem = {
   sub?:    string
 }
 
-const CARD_W = 380
+const CARD_W = 480
 
 function Card({ item }: { item: GalleryItem }) {
   return (
     <div
       className="relative flex-none overflow-hidden border border-white/10 hover:border-gold/40 transition-colors duration-300 group"
-      style={{ width: CARD_W, aspectRatio: '4/5' }}
+      style={{ width: CARD_W, aspectRatio: '16/9' }}
     >
       <Image
         src={item.src}
@@ -155,7 +155,7 @@ export default function Gallery({ items }: { items: unknown[] }) {
       {/* Mobile scroll */}
       <div className="md:hidden flex gap-4 overflow-x-auto px-6 pb-2 hide-scrollbar">
         {ITEMS.map(item => (
-          <div key={item.num} className="flex-none" style={{ width: '88vw' }}>
+          <div key={item.num} className="flex-none" style={{ width: '92vw' }}>
             <Card item={item} />
           </div>
         ))}
