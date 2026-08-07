@@ -40,16 +40,29 @@ export default function Contact({ socials, content, personal }: Props) {
     return () => ctx.revert()
   }, [])
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const fd   = new FormData(e.currentTarget)
-    const name = fd.get('name') as string
-    const email = fd.get('email') as string
-    const msg  = fd.get('message') as string
-    window.location.href = `mailto:${String(personal.email)}?subject=Portfolio Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(msg + '\n\nFrom: ' + email)}`
-    if (statusRef.current) { statusRef.current.textContent = 'MESSAGE SENT ✓'; statusRef.current.className = 'text-[10px] tracking-[.22em] uppercase text-gold min-h-4' }
-    formRef.current?.reset()
-    setTimeout(() => { if (statusRef.current) { statusRef.current.textContent = ''; statusRef.current.className = 'text-[10px] tracking-[.22em] uppercase min-h-4' } }, 4000)
+    const fd      = new FormData(e.currentTarget)
+    const name    = fd.get('name') as string
+    const email   = fd.get('email') as string
+    const message = fd.get('message') as string
+
+    const status = statusRef.current
+    if (status) { status.textContent = 'SENDING…'; status.className = 'text-[10px] tracking-[.22em] uppercase text-paper/50 min-h-4' }
+
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, message }),
+    })
+
+    if (res.ok) {
+      if (status) { status.textContent = 'MESSAGE SENT ✓'; status.className = 'text-[10px] tracking-[.22em] uppercase text-gold min-h-4' }
+      formRef.current?.reset()
+      setTimeout(() => { if (status) { status.textContent = ''; status.className = 'text-[10px] tracking-[.22em] uppercase min-h-4' } }, 4000)
+    } else {
+      if (status) { status.textContent = 'FAILED — TRY AGAIN'; status.className = 'text-[10px] tracking-[.22em] uppercase text-crimson min-h-4' }
+    }
   }
 
   return (
