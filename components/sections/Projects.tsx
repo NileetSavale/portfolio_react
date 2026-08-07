@@ -23,11 +23,11 @@ export default function Projects({ projects }: { projects: unknown[] }) {
 
   const scrollPrev = () => {
     if (window.innerWidth >= 768) goTo(idxRef.current - 1)
-    else mobileRef.current?.scrollBy({ left: -(window.innerWidth * 0.88 + 16), behavior: 'smooth' })
+    else mobileRef.current?.scrollBy({ left: -window.innerWidth, behavior: 'smooth' })
   }
   const scrollNext = () => {
     if (window.innerWidth >= 768) goTo(idxRef.current + 1)
-    else mobileRef.current?.scrollBy({ left: window.innerWidth * 0.88 + 16, behavior: 'smooth' })
+    else mobileRef.current?.scrollBy({ left: window.innerWidth, behavior: 'smooth' })
   }
 
   useEffect(() => {
@@ -66,7 +66,7 @@ export default function Projects({ projects }: { projects: unknown[] }) {
   }, [])
 
   const Card = ({ p }: { p: Project }) => (
-    <div className="proj-card shrink-0 w-[88vw] md:w-[400px] group relative border border-gold/15 p-[34px] bg-gold/[.025] overflow-hidden hover:border-gold/40 transition-colors duration-250">
+    <div className="proj-card shrink-0 w-[100vw] md:w-[400px] group relative border border-gold/15 p-[34px] bg-gold/[.025] overflow-hidden hover:border-gold/40 transition-colors duration-250">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-crimson via-gold to-flame scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
       <div aria-hidden className="absolute top-3.5 right-5 font-display text-[68px] leading-none text-gold/7 select-none">{p.num}</div>
       <span className={`inline-block text-[8px] tracking-[.22em] uppercase px-2.5 py-[3px] mb-3.5 ${p.badgeCls}`}>{p.badge}</span>
@@ -121,21 +121,13 @@ export default function Projects({ projects }: { projects: unknown[] }) {
         </div>
       </div>
 
-      {/* Mobile swipeable with flanking arrows */}
-      <div className="relative md:hidden flex items-center" style={{ zIndex: 1 }}>
-        <button onClick={scrollPrev} aria-label="Previous project" className="shrink-0 mx-2 w-8 h-8 border border-gold/25 flex items-center justify-center text-paper/40 hover:border-gold hover:text-gold transition-all duration-200">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <div ref={mobileRef} className="flex-1 flex gap-4 overflow-x-auto pb-6 snap-x snap-mandatory hide-scrollbar">
-          {PROJECTS.map(p => (
-            <div key={p.num} className="snap-start shrink-0">
-              <Card p={p} />
-            </div>
-          ))}
-        </div>
-        <button onClick={scrollNext} aria-label="Next project" className="shrink-0 mx-2 w-8 h-8 border border-gold/25 flex items-center justify-center text-paper/40 hover:border-gold hover:text-gold transition-all duration-200">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
+      {/* Mobile swipeable — full bleed */}
+      <div ref={mobileRef} className="md:hidden flex overflow-x-auto pb-6 snap-x snap-mandatory hide-scrollbar" style={{ zIndex: 1 }}>
+        {PROJECTS.map(p => (
+          <div key={p.num} className="snap-start shrink-0">
+            <Card p={p} />
+          </div>
+        ))}
       </div>
     </section>
   )

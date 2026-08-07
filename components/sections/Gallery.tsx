@@ -232,9 +232,9 @@ export default function Gallery({ items }: { items: unknown[] }) {
       </div>
 
       {/* Mobile */}
-      <div className="md:hidden flex gap-4 overflow-x-auto px-6 pb-2 hide-scrollbar">
+      <div className="md:hidden flex overflow-x-auto pb-2 hide-scrollbar snap-x snap-mandatory">
         {ITEMS.map(item => (
-          <div key={item.num} className="flex-none" style={{ width: '92vw' }}>
+          <div key={item.num} className="flex-none snap-start" style={{ width: '100vw' }}>
             <Card item={item} onClick={() => setActive(item)} />
           </div>
         ))}
