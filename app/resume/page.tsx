@@ -29,10 +29,10 @@ export default async function ResumePage() {
         </a>
       </div>
       <div className="flex-1 px-4 py-4">
-        <embed
+        <iframe
           src={PDF}
-          type="application/pdf"
-          className="w-full h-full min-h-[85vh] rounded"
+          className="w-full h-full min-h-[85vh] rounded border-0"
+          title="Nileet Savale Resume"
         />
       </div>
     </main>
