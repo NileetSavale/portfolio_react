@@ -584,15 +584,20 @@ function ResumeEditor({ onSave }: { onSave: (m: string) => void }) {
   }, [])
 
   async function handleFile(file: File) {
-    if (file.type !== 'application/pdf') { alert('Please select a PDF file'); return }
+    if (!file.name.toLowerCase().endsWith('.pdf')) { alert('Please select a PDF file'); return }
     setUploading(true)
-    const form = new FormData()
-    form.append('file', file)
-    const res  = await fetch('/api/admin/resume', { method: 'POST', body: form })
-    const json = await res.json()
-    setUploading(false)
-    if (json.url) { setCurrentUrl(json.url); onSave('Resume updated ✓') }
-    else alert('Upload failed: ' + json.error)
+    try {
+      const form = new FormData()
+      form.append('file', file)
+      const res  = await fetch('/api/admin/resume', { method: 'POST', body: form })
+      const json = await res.json()
+      if (json.url) { setCurrentUrl(json.url); onSave('Resume updated ✓') }
+      else alert('Upload failed: ' + json.error)
+    } catch (err) {
+      alert('Upload failed: ' + String(err))
+    } finally {
+      setUploading(false)
+    }
   }
 
   return (

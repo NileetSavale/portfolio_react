@@ -14,8 +14,6 @@ export async function POST(req: NextRequest) {
   const form = await req.formData()
   const file = form.get('file') as File | null
   if (!file) return NextResponse.json({ error: 'No file' }, { status: 400 })
-  if (file.type !== 'application/pdf')
-    return NextResponse.json({ error: 'PDF required' }, { status: 400 })
 
   const buf   = Buffer.from(await file.arrayBuffer())
   const admin = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_KEY!)
