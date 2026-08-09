@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 
 // ── tiny helpers ──────────────────────────────────────────────────────────────
@@ -64,6 +64,7 @@ const TABS = [
   { id: 'skills',     label: 'Skills'     },
   { id: 'projects',   label: 'Projects'   },
   { id: 'experience', label: 'Experience' },
+  { id: 'gallery',    label: 'Gallery'    },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -118,6 +119,7 @@ export default function AdminPage() {
         {tab === 'skills'     && <SkillsEditor     onSave={showToast} />}
         {tab === 'projects'   && <ProjectsEditor   onSave={showToast} />}
         {tab === 'experience' && <ExperienceEditor onSave={showToast} />}
+        {tab === 'gallery'    && <GalleryEditor    onSave={showToast} />}
       </main>
 
       <Toast msg={toast} />
@@ -474,6 +476,96 @@ function ExperienceEditor({ onSave }: { onSave: (m: string) => void }) {
         </div>
       ))}
       <button onClick={addItem} className="text-[9px] tracking-[.25em] uppercase text-gold/60 hover:text-gold">+ Add Entry</button>
+    </SectionWrap>
+  )
+}
+
+// ── Gallery ───────────────────────────────────────────────────────────────────
+
+type GalleryItem = { num: string; src: string; caption: string; sub?: string; story?: string }
+
+function GalleryEditor({ onSave }: { onSave: (m: string) => void }) {
+  const [d, setD]         = useState<GalleryItem[] | null>(null)
+  const [busy, setBusy]   = useState(false)
+  const [uploading, setUploading] = useState<number | null>(null)
+  const fileRefs = useRef<(HTMLInputElement | null)[]>([])
+
+  useEffect(() => { load('gallery').then(setD) }, [])
+  if (!d) return <p className="text-paper/30 text-[11px]">Loading…</p>
+
+  function update(i: number, key: string, val: string) {
+    setD(d!.map((item, idx) => idx === i ? { ...item, [key]: val } : item))
+  }
+  function addItem() {
+    const num = String(d!.length + 1).padStart(2, '0')
+    setD([...d!, { num, src: '', caption: '', sub: '', story: '' }])
+  }
+  function removeItem(i: number) { setD(d!.filter((_, idx) => idx !== i)) }
+
+  async function uploadPhoto(i: number, file: File) {
+    setUploading(i)
+    const form = new FormData()
+    form.append('file', file)
+    const res = await fetch('/api/admin/gallery', { method: 'POST', body: form })
+    const json = await res.json()
+    setUploading(null)
+    if (json.url) update(i, 'src', json.url)
+    else alert('Upload failed: ' + json.error)
+  }
+
+  async function handleSave() {
+    setBusy(true)
+    await save('gallery', d)
+    setBusy(false)
+    onSave('Gallery saved ✓')
+  }
+
+  return (
+    <SectionWrap title="Gallery" onSave={handleSave} busy={busy}>
+      {d.map((item, i) => (
+        <div key={i} className="mb-8 p-5 border border-white/8 bg-white/[.015]">
+          <div className="flex justify-between mb-4">
+            <span className="text-[9px] tracking-[.25em] uppercase text-gold">{item.num} — {item.caption || 'New Photo'}</span>
+            <button onClick={() => removeItem(i)} className="text-crimson text-[10px] hover:opacity-70">Remove</button>
+          </div>
+
+          {/* Photo preview + upload */}
+          <div className="mb-4 flex gap-4 items-start">
+            {item.src && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={item.src} alt={item.caption} className="w-48 aspect-video object-cover shrink-0 border border-white/10" />
+            )}
+            <div className="flex-1">
+              {label('Photo URL')}
+              <input value={item.src} onChange={e => update(i, 'src', e.target.value)} className={input('mb-2')} />
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => fileRefs.current[i]?.click()}
+                  disabled={uploading === i}
+                  className="px-4 py-1.5 border border-white/20 text-[8px] tracking-[.25em] uppercase text-paper/60 hover:border-gold hover:text-gold transition-all duration-200 disabled:opacity-40"
+                >
+                  {uploading === i ? 'Uploading…' : 'Upload Photo'}
+                </button>
+                <input
+                  ref={el => { fileRefs.current[i] = el }}
+                  type="file" accept="image/*" className="hidden"
+                  onChange={e => { const f = e.target.files?.[0]; if (f) uploadPhoto(i, f) }}
+                />
+                <span className="text-[8px] text-paper/25">or paste URL above</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-x-6 gap-y-3 mb-3">
+            <div>{label('Caption')}<input value={item.caption} onChange={e => update(i, 'caption', e.target.value)} className={input()} /></div>
+            <div>{label('Sub-caption (location / date)')}<input value={item.sub ?? ''} onChange={e => update(i, 'sub', e.target.value)} className={input()} /></div>
+          </div>
+          <div>{label('Story (shown in lightbox)')}
+            <textarea value={item.story ?? ''} rows={4} onChange={e => update(i, 'story', e.target.value)} className={`${input()} resize-none`} />
+          </div>
+        </div>
+      ))}
+      <button onClick={addItem} className="text-[9px] tracking-[.25em] uppercase text-gold/60 hover:text-gold">+ Add Photo</button>
     </SectionWrap>
   )
 }
