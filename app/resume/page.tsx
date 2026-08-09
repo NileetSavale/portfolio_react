@@ -1,10 +1,13 @@
 import Link from 'next/link'
+import { readData } from '@/lib/store'
 
+export const dynamic = 'force-dynamic'
 export const metadata = { title: 'Resume — Nileet Savale' }
 
-const PDF = '/Nileet-Savale-Resume.pdf'
+export default async function ResumePage() {
+  const personal = await readData<Record<string, unknown>>('personal')
+  const PDF = String(personal.resumeUrl ?? '/Nileet-Savale-Resume.pdf')
 
-export default function ResumePage() {
   return (
     <main className="min-h-screen bg-ink flex flex-col">
       <div className="flex items-center justify-between px-8 py-4 border-b border-white/10">

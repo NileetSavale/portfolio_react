@@ -65,6 +65,7 @@ const TABS = [
   { id: 'projects',   label: 'Projects'   },
   { id: 'experience', label: 'Experience' },
   { id: 'gallery',    label: 'Gallery'    },
+  { id: 'resume',     label: 'Resume'     },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -120,6 +121,7 @@ export default function AdminPage() {
         {tab === 'projects'   && <ProjectsEditor   onSave={showToast} />}
         {tab === 'experience' && <ExperienceEditor onSave={showToast} />}
         {tab === 'gallery'    && <GalleryEditor    onSave={showToast} />}
+        {tab === 'resume'     && <ResumeEditor     onSave={showToast} />}
       </main>
 
       <Toast msg={toast} />
@@ -567,5 +569,68 @@ function GalleryEditor({ onSave }: { onSave: (m: string) => void }) {
       ))}
       <button onClick={addItem} className="text-[9px] tracking-[.25em] uppercase text-gold/60 hover:text-gold">+ Add Photo</button>
     </SectionWrap>
+  )
+}
+
+// ── Resume ────────────────────────────────────────────────────────────────────
+
+function ResumeEditor({ onSave }: { onSave: (m: string) => void }) {
+  const [currentUrl, setCurrentUrl] = useState<string | null>(null)
+  const [uploading, setUploading]   = useState(false)
+  const fileRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    load('personal').then((d: Record<string, unknown>) => setCurrentUrl(String(d.resumeUrl ?? '')))
+  }, [])
+
+  async function handleFile(file: File) {
+    if (file.type !== 'application/pdf') { alert('Please select a PDF file'); return }
+    setUploading(true)
+    const form = new FormData()
+    form.append('file', file)
+    const res  = await fetch('/api/admin/resume', { method: 'POST', body: form })
+    const json = await res.json()
+    setUploading(false)
+    if (json.url) { setCurrentUrl(json.url); onSave('Resume updated ✓') }
+    else alert('Upload failed: ' + json.error)
+  }
+
+  return (
+    <div className="mb-10">
+      <div className="mb-5 pb-2 border-b border-white/10">
+        <h2 className="font-heading text-[13px] tracking-[.25em] uppercase text-gold">Resume</h2>
+      </div>
+
+      {/* Drop zone */}
+      <div
+        className="border-2 border-dashed border-white/15 hover:border-gold/40 transition-colors duration-200 p-12 flex flex-col items-center gap-5 cursor-pointer"
+        onClick={() => fileRef.current?.click()}
+        onDragOver={e => e.preventDefault()}
+        onDrop={e => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f) handleFile(f) }}
+      >
+        <div className="text-[32px] text-paper/20">↑</div>
+        <p className="text-[10px] tracking-[.3em] uppercase text-paper/40">
+          {uploading ? 'Uploading…' : 'Drop PDF here or click to browse'}
+        </p>
+        <input ref={fileRef} type="file" accept="application/pdf" className="hidden"
+          onChange={e => { const f = e.target.files?.[0]; if (f) handleFile(f) }} />
+      </div>
+
+      {/* Current file */}
+      {currentUrl && (
+        <div className="mt-6 p-4 bg-white/[.03] border border-white/8">
+          <p className="text-[8px] tracking-[.32em] uppercase text-paper/45 mb-2">Current Resume</p>
+          <p className="text-[11px] font-mono text-paper/60 break-all mb-3">{currentUrl.split('?')[0]}</p>
+          <a
+            href={currentUrl}
+            target="_blank"
+            rel="noopener"
+            className="text-[9px] tracking-[.25em] uppercase text-gold no-underline hover:opacity-70 transition-opacity"
+          >
+            Open PDF ↗
+          </a>
+        </div>
+      )}
+    </div>
   )
 }
