@@ -590,8 +590,11 @@ function ResumeEditor({ onSave }: { onSave: (m: string) => void }) {
       const form = new FormData()
       form.append('file', file)
       const res  = await fetch('/api/admin/resume', { method: 'POST', body: form })
-      const json = await res.json()
-      if (json.url) { setCurrentUrl(json.url); onSave('Resume updated ✓') }
+      const text = await res.text()
+      let json: Record<string, unknown>
+      try { json = JSON.parse(text) }
+      catch { alert('Upload failed (server error):\n' + text.slice(0, 400)); return }
+      if (json.url) { setCurrentUrl(json.url as string); onSave('Resume updated ✓') }
       else alert('Upload failed: ' + json.error)
     } catch (err) {
       alert('Upload failed: ' + String(err))

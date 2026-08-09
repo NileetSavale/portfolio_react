@@ -11,25 +11,29 @@ async function authed(req: NextRequest) {
 export async function POST(req: NextRequest) {
   if (!await authed(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const form = await req.formData()
-  const file = form.get('file') as File | null
-  if (!file) return NextResponse.json({ error: 'No file' }, { status: 400 })
+  try {
+    const form = await req.formData()
+    const file = form.get('file') as File | null
+    if (!file) return NextResponse.json({ error: 'No file' }, { status: 400 })
 
-  const buf   = Buffer.from(await file.arrayBuffer())
-  const admin = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_KEY!)
+    const buf   = Buffer.from(await file.arrayBuffer())
+    const admin = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_KEY!)
 
-  const { error } = await admin.storage.from('gallery').upload('resume.pdf', buf, {
-    contentType: 'application/pdf',
-    upsert: true,
-  })
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    const { error } = await admin.storage.from('gallery').upload('resume.pdf', buf, {
+      contentType: 'application/pdf',
+      upsert: true,
+    })
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
-  const { data } = admin.storage.from('gallery').getPublicUrl('resume.pdf')
-  // Bust CDN cache with a timestamp so the new PDF is served immediately
-  const url = `${data.publicUrl}?t=${Date.now()}`
+    const { data } = admin.storage.from('gallery').getPublicUrl('resume.pdf')
+    const url = `${data.publicUrl}?t=${Date.now()}`
 
-  const personal = await readData<Record<string, unknown>>('personal')
-  await writeData('personal', { ...personal, resumeUrl: url })
+    const personal = await readData<Record<string, unknown>>('personal')
+    await writeData('personal', { ...personal, resumeUrl: url })
 
-  return NextResponse.json({ url })
+    return NextResponse.json({ url })
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    return NextResponse.json({ error: msg }, { status: 500 })
+  }
 }
