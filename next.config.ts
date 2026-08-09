@@ -10,6 +10,7 @@ const csp = [
   "font-src 'self'",
   "object-src 'self' https://kcifhcdljpxvkyrlndow.supabase.co",
   "frame-src 'self' https://kcifhcdljpxvkyrlndow.supabase.co",
+  "connect-src 'self' https://kcifhcdljpxvkyrlndow.supabase.co",
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",
