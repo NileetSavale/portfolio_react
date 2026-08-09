@@ -22,7 +22,7 @@ export default async function ResumePage() {
         </span>
         <a
           href={PDF}
-          download
+          download="Nileet Savale's Resume.pdf"
           className="px-4 py-[7px] border border-gold/40 text-[9px] tracking-[.28em] uppercase text-gold no-underline hover:bg-gold hover:text-ink transition-all duration-200"
         >
           Download PDF
