@@ -39,7 +39,7 @@ export default function OGImage() {
           fontSize: 14, letterSpacing: '0.4em', textTransform: 'uppercase',
           color: 'rgba(244,196,48,0.7)', marginBottom: 20, display: 'flex',
         }}>
-          Portfolio · nileetsavale.com
+          Portfolio · www.nileetsavale.com
         </div>
 
         {/* name */}

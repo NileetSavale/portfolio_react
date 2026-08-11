@@ -8,7 +8,7 @@ const cinzel   = Cinzel({        weight: ['600','800'],   subsets: ['latin'],   
 const shippori = Shippori_Mincho({ weight: ['700','800'], subsets: ['latin'],    variable: '--f-shippori', display: 'swap', preload: false })
 const mono     = Space_Mono({    weight: ['400','700'],   subsets: ['latin'],    variable: '--f-mono',     display: 'swap' })
 
-const SITE = 'https://nileetsavale.com'
+const SITE = 'https://www.nileetsavale.com'
 const DESC = 'CS Graduate Student and AI/ML Engineer at Indiana University. Building intelligent systems that bridge research and real-world impact.'
 
 export const metadata: Metadata = {

@@ -5,6 +5,6 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       { userAgent: '*', allow: '/', disallow: ['/admin', '/api/'] },
     ],
-    sitemap: 'https://nileetsavale.com/sitemap.xml',
+    sitemap: 'https://www.nileetsavale.com/sitemap.xml',
   }
 }

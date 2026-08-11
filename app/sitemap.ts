@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    { url: 'https://nileetsavale.com', lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
-    { url: 'https://nileetsavale.com/resume', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: 'https://www.nileetsavale.com', lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
+    { url: 'https://www.nileetsavale.com/resume', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
   ]
 }
