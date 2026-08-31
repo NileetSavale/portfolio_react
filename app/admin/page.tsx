@@ -380,6 +380,10 @@ function SkillsEditor({ onSave }: { onSave: (m: string) => void }) {
 
 type Project = { num: string; badge: string; badgeCls: string; title: string; desc: string; tech: string[]; links: { label: string; href: string }[] }
 
+function renumber(arr: Project[]): Project[] {
+  return arr.map((p, i) => ({ ...p, num: String(i + 1).padStart(2, '0') }))
+}
+
 function ProjectsEditor({ onSave }: { onSave: (m: string) => void }) {
   const [d, setD]     = useState<Project[] | null>(null)
   const [busy, setBusy] = useState(false)
@@ -391,10 +395,17 @@ function ProjectsEditor({ onSave }: { onSave: (m: string) => void }) {
     setD(d!.map((p, idx) => idx === i ? { ...p, [key]: val } : p))
   }
   function addProject() {
-    const num = String(d!.length + 1).padStart(2,'0')
-    setD([...d!, { num, badge: 'Coming Soon', badgeCls: 'bg-vivid/10 text-vivid border border-vivid/30', title: 'New Project', desc: '', tech: [], links: [] }])
+    // ponytail: prepend so newest appears at top
+    setD([{ num: '01', badge: 'Coming Soon', badgeCls: 'bg-vivid/10 text-vivid border border-vivid/30', title: 'New Project', desc: '', tech: [], links: [] }, ...d!])
   }
-  function removeProject(i: number) { setD(d!.filter((_, idx) => idx !== i)) }
+  function removeProject(i: number) { setD(renumber(d!.filter((_, idx) => idx !== i))) }
+  function move(i: number, dir: -1 | 1) {
+    const j = i + dir
+    if (j < 0 || j >= d!.length) return
+    const next = [...d!]
+    ;[next[i], next[j]] = [next[j], next[i]]
+    setD(renumber(next))
+  }
 
   async function handleSave() {
     setBusy(true)
@@ -408,7 +419,15 @@ function ProjectsEditor({ onSave }: { onSave: (m: string) => void }) {
       {d.map((p, i) => (
         <div key={i} className="mb-8 p-5 border border-white/8 bg-white/[.015]">
           <div className="flex justify-between mb-3">
-            <span className="text-[9px] tracking-[.25em] uppercase text-gold">{p.num} — {p.title}</span>
+            <div className="flex items-center gap-3">
+              <div className="flex flex-col gap-0.5">
+                <button onClick={() => move(i, -1)} disabled={i === 0}
+                  className="text-[10px] text-paper/40 hover:text-gold disabled:opacity-20 leading-none">▲</button>
+                <button onClick={() => move(i, 1)} disabled={i === d!.length - 1}
+                  className="text-[10px] text-paper/40 hover:text-gold disabled:opacity-20 leading-none">▼</button>
+              </div>
+              <span className="text-[9px] tracking-[.25em] uppercase text-gold">{p.num} — {p.title}</span>
+            </div>
             <button onClick={() => removeProject(i)} className="text-crimson text-[10px] hover:opacity-70">Remove</button>
           </div>
           <div className="grid md:grid-cols-2 gap-x-6 gap-y-3">

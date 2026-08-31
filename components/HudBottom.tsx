@@ -21,7 +21,7 @@ export default function HudBottom() {
   return (
     <div aria-hidden className="hidden md:flex fixed bottom-0 left-0 right-0 z-[60] px-12 py-[18px] justify-between items-end pointer-events-none text-[9px] tracking-[.28em] uppercase text-paper/55">
       <span>savalenileet@gmail.com</span>
-      <span>{sec}</span>
+<span>{sec}</span>
     </div>
   )
 }

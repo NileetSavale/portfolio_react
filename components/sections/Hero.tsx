@@ -24,7 +24,7 @@ export default function Hero({ personal, content }: Props) {
   // Parallax targets
   const ghostRef   = useRef<HTMLDivElement>(null)
   const kanjiLRef  = useRef<HTMLDivElement>(null)
-  const kanjiRRef  = useRef<HTMLDivElement>(null)
+  const kanjiRRef  = useRef<HTMLAnchorElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
   // Particle canvas
@@ -102,9 +102,9 @@ export default function Hero({ personal, content }: Props) {
       <div ref={kanjiLRef} aria-hidden className="hidden md:block absolute top-1/2 left-8 z-[5] font-kanji" style={{ transform:'translateY(-50%)', writingMode:'vertical-rl', fontSize:'clamp(22px,2.8vw,40px)', letterSpacing:'.14em', color:'#ff7a2f', textShadow:'0 0 24px rgba(255,122,47,.45)', opacity:.75 }}>
         ニリート
       </div>
-      <div ref={kanjiRRef} aria-hidden className="hidden md:block absolute top-1/2 right-8 z-[5] font-kanji" style={{ transform:'translateY(-50%)', writingMode:'vertical-rl', fontSize:'clamp(22px,2.8vw,40px)', letterSpacing:'.14em', color:'#9fe8ff', textShadow:'0 0 24px rgba(159,232,255,.4)', opacity:.75 }}>
+      <a ref={kanjiRRef} href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" className="hidden md:block absolute top-1/2 right-8 z-[5] font-kanji no-underline" style={{ transform:'translateY(-50%)', writingMode:'vertical-rl', fontSize:'clamp(22px,2.8vw,40px)', letterSpacing:'.14em', color:'#9fe8ff', textShadow:'0 0 24px rgba(159,232,255,.4)', opacity:.75, textDecoration:'none' }}>
         サヴァレ
-      </div>
+      </a>
 
       {/* Main content — parallax layer 0.12× */}
       <div ref={contentRef} className="absolute inset-0 flex flex-col items-center justify-center text-center px-5" style={{ zIndex: 5 }}>
