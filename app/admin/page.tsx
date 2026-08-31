@@ -395,8 +395,7 @@ function ProjectsEditor({ onSave }: { onSave: (m: string) => void }) {
     setD(d!.map((p, idx) => idx === i ? { ...p, [key]: val } : p))
   }
   function addProject() {
-    // ponytail: prepend so newest appears at top
-    setD([{ num: '01', badge: 'Coming Soon', badgeCls: 'bg-vivid/10 text-vivid border border-vivid/30', title: 'New Project', desc: '', tech: [], links: [] }, ...d!])
+    setD(renumber([{ num: '', badge: 'Coming Soon', badgeCls: 'bg-vivid/10 text-vivid border border-vivid/30', title: 'New Project', desc: '', tech: [], links: [] }, ...d!]))
   }
   function removeProject(i: number) { setD(renumber(d!.filter((_, idx) => idx !== i))) }
   function move(i: number, dir: -1 | 1) {
